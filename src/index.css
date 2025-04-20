@@ -14,6 +14,12 @@
   --color-rose: #ee5454;
 }
 
+@layer components {
+  .shadow-default {
+    @apply shadow-[0px_16px_40px_0px_rgba(143,160,193,0.14)];
+  }
+}
+
 progress {
   -webkit-appearance: none;
   width: 100%;

@@ -2,25 +2,21 @@ import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../contexts/QuizContext";
 
 export function Buttons() {
-  const questions = useQuiz();
-  const bgColors = {
-    HTML: "#FFF1E9",
-    CSS: "#E0FDEF",
-    JavaScript: "#EBF0FF",
-    Accessibility: "#F6E7FF",
-  };
+  const { allQuestions, bgColors, dispatch } = useQuiz();
   const navigate = useNavigate();
-  function handleToggle() {
+
+  function handleToggle(i) {
+    dispatch({ type: "selectedQuestion", payload: allQuestions[i] });
     navigate("/quiz");
   }
   return (
     <div className="flex flex-col gap-3 md:gap-6">
-      {questions.map((question, index) => (
+      {allQuestions.map((question, index) => (
         <>
           <button
-            onClick={() => handleToggle()}
+            onClick={() => handleToggle(index)}
             key={index}
-            className="w-full lg:w-[564px] h-16 md:h-20 lg:h-24 text-lg md:text-[1.75rem] font-medium text-navy bg-white flex items-center uppercase gap-4 lg:gap-8 p-3 lg:p-5 rounded-[0.75rem] lg:rounded-3xl shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] cursor-pointer"
+            className="w-full lg:w-[564px] h-16 md:h-20 lg:h-24 text-lg md:text-[1.75rem] font-medium text-navy bg-white flex items-center uppercase gap-4 lg:gap-8 p-3 lg:p-5 rounded-[0.75rem] shadow-default lg:rounded-3xl "
           >
             <figure
               style={{ backgroundColor: bgColors[question.title] }}
