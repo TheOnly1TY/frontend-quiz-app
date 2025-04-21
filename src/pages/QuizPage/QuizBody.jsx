@@ -3,7 +3,7 @@ import { useQuiz } from "../../contexts/QuizContext";
 import { CtaButton } from "../../components/CtaButton";
 
 export function QuizBody() {
-  const { selectedQuestion, currentQuestionindex } = useQuiz();
+  const { selectedQuestion, currentQuestionindex, points } = useQuiz();
   const { questions } = selectedQuestion;
   return (
     <div
@@ -22,7 +22,7 @@ export function QuizBody() {
         <progress
           className="mt-6 mb-10 lg:mt-40"
           max={questions.length}
-          value={currentQuestionindex}
+          value={points}
         />
       </div>
       <Options />
@@ -43,13 +43,13 @@ function Options() {
   const navigate = useNavigate();
 
   function handleAnswer() {
-    if (questions.length !== currentQuestionindex + 1) {
-      answer === null
-        ? dispatch({ type: "warning" })
-        : dispatch({ type: "hasAnswered" });
-    } else {
-      navigate("/result");
-    }
+    answer === null
+      ? dispatch({ type: "warning" })
+      : dispatch({ type: "hasAnswered", payload: currentQuestion });
+  }
+  function handleQuiz() {
+    dispatch({ type: "hasAnswered", payload: currentQuestion });
+    navigate("/result");
   }
 
   function handleUserAnswer(answer) {
@@ -75,6 +75,7 @@ function Options() {
   function handleNextQuestion() {
     dispatch({ type: "nextQuestion" });
   }
+  const isLastQuestion = currentQuestionindex === questions.length - 1;
   return (
     <div className="lg:max-w-[564px]">
       <div className="grid gap-y-3 md:gap-y-6">
@@ -121,8 +122,11 @@ function Options() {
           </button>
         ))}
       </div>
+
       {!hasAnswered ? (
         <CtaButton callback={handleAnswer} message="Submit Answer" />
+      ) : isLastQuestion ? (
+        <CtaButton callback={handleQuiz} message="Submit Quiz" />
       ) : (
         <CtaButton callback={handleNextQuestion} message="Next Question" />
       )}

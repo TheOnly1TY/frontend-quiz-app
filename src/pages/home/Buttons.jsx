@@ -16,7 +16,7 @@ export function Buttons() {
           <button
             onClick={() => handleToggle(index)}
             key={index}
-            className="w-full lg:w-[564px] h-16 md:h-20 lg:h-24 text-lg md:text-[1.75rem] font-medium text-navy bg-white flex items-center uppercase gap-4 lg:gap-8 p-3 lg:p-5 rounded-[0.75rem] shadow-default lg:rounded-3xl "
+            className="w-full lg:w-[564px] h-16 md:h-20 lg:h-24 text-lg md:text-[1.75rem] font-medium text-navy bg-white flex items-center uppercase gap-4 lg:gap-8 p-3 lg:p-5 rounded-[0.75rem] shadow-default lg:rounded-3xl cursor-pointer"
           >
             <figure
               style={{ backgroundColor: bgColors[question.title] }}

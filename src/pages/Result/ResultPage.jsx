@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { CtaButton } from "../../components/CtaButton";
 import { Header } from "../../components/Header";
 import { useQuiz } from "../../contexts/QuizContext";
@@ -10,9 +11,16 @@ export function ResultPage() {
     </section>
   );
 }
+
 function Result() {
-  const { selectedQuestion, bgColors } = useQuiz();
+  const navigate = useNavigate();
+  const { selectedQuestion, bgColors, points, dispatch } = useQuiz();
   const { title, icon } = selectedQuestion;
+
+  function handlePlayAgain() {
+    navigate("/");
+    dispatch({ type: "restart" });
+  }
   return (
     <section className=" md:mx-auto pb-12 font-display">
       <div className="flex flex-col lg:flex-row justify-between font-display mt-8 lg:mt-12 lg:gap-2">
@@ -37,13 +45,13 @@ function Result() {
               {title}
             </div>
             <h2 className="flex justify-center items-center flex-col gap-y-4 text-[144px] text-navy font-medium leading-[100%]">
-              8
+              {points}
               <span className="text-2xl text-steel leading-[150%] font-normal">
-                out of 10
+                out of {selectedQuestion.questions.length}
               </span>
             </h2>
           </div>
-          <CtaButton message="Play Again" />
+          <CtaButton callback={handlePlayAgain} message="Play Again" />
         </div>
       </div>
     </section>

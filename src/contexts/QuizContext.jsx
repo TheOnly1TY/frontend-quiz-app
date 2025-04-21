@@ -13,6 +13,7 @@ function QuizProvider({ children }) {
     isAnsweredSelected: false,
     hasAnswered: false,
     isSubmitted: false,
+    points: 0,
   };
   const [
     {
@@ -22,6 +23,7 @@ function QuizProvider({ children }) {
       answer,
       isAnsweredSelected,
       hasAnswered,
+      points,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -36,6 +38,10 @@ function QuizProvider({ children }) {
         return {
           ...state,
           hasAnswered: state.answer !== null,
+          points:
+            action.payload.answer === state.answer
+              ? state.points + 1
+              : state.points,
           isSubmitted: true,
         };
       case "nextQuestion":
@@ -53,6 +59,8 @@ function QuizProvider({ children }) {
         };
       case "answer":
         return { ...state, isAnsweredSelected: false, answer: action.payload };
+      case "restart":
+        return { ...initialState, allQuestions: state.allQuestions };
       default:
         throw new Error("Action unknown");
     }
@@ -87,6 +95,7 @@ function QuizProvider({ children }) {
         answer,
         isAnsweredSelected,
         hasAnswered,
+        points,
       }}
     >
       {children}
