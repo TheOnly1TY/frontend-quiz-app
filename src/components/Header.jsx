@@ -6,7 +6,7 @@ export function Header() {
   const { title, icon } = selectedQuestion;
   return (
     <header className="flex justify-between items-center">
-      <div className="flex justify-center items-center font-medium text-sm md:text-[28px] text-navy uppercase gap-4 md:gap-6">
+      <div className="flex justify-center items-center font-medium text-sm md:text-[28px] text-navy dark:text-white uppercase gap-4 md:gap-6">
         <figure
           style={{ backgroundColor: bgColors[title] }}
           className="flex justify-center items-center w-10 h-10 md:w-14 md:h-14  rounded-[9px] md:rounded-[0.75rem]"

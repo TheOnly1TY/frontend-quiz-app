@@ -12,9 +12,9 @@ function QuizProvider({ children }) {
     currentQuestionindex: 0,
     isAnsweredSelected: false,
     hasAnswered: false,
-    isSubmitted: false,
     points: 0,
   };
+
   const [
     {
       allQuestions,
@@ -40,10 +40,10 @@ function QuizProvider({ children }) {
           hasAnswered: state.answer !== null,
           points:
             action.payload.answer === state.answer
-              ? state.points + 1
+              ? state.points++
               : state.points,
-          isSubmitted: true,
         };
+
       case "nextQuestion":
         return {
           ...state,
@@ -52,13 +52,16 @@ function QuizProvider({ children }) {
           isAnsweredSelected: false,
           currentQuestionindex: state.currentQuestionindex + 1,
         };
+
       case "warning":
         return {
           ...state,
           isAnsweredSelected: true,
         };
+
       case "answer":
         return { ...state, isAnsweredSelected: false, answer: action.payload };
+
       case "restart":
         return { ...initialState, allQuestions: state.allQuestions };
       default:
@@ -72,6 +75,7 @@ function QuizProvider({ children }) {
     JavaScript: "#EBF0FF",
     Accessibility: "#F6E7FF",
   };
+
   useEffect(() => {
     async function name() {
       try {
@@ -84,6 +88,7 @@ function QuizProvider({ children }) {
     }
     name();
   }, []);
+
   return (
     <QuizContext.Provider
       value={{
