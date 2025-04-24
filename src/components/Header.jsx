@@ -1,6 +1,5 @@
 import { Theme } from "./Theme";
 import { useQuiz } from "../contexts/QuizContext";
-
 export function Header() {
   const { selectedQuestion, bgColors } = useQuiz();
   const { title, icon } = selectedQuestion;

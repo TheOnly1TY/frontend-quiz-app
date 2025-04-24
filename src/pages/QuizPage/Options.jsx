@@ -23,7 +23,7 @@ export function Options() {
   };
 
   const handleFinishQuiz = () => {
-    dispatch({ type: "hasAnswered", payload: currentQuestion });
+    dispatch({ type: "finishQuiz", payload: currentQuestion });
     navigate("/result");
   };
 
@@ -59,13 +59,13 @@ export function Options() {
             onClick={() => handleUserAnswer(option)}
             disabled={hasAnswered}
             key={option}
-            className={`group flex items-center justify-between w-full h-16 md:h-20 lg:h-[5.75rem] leading-[100%] p-3 lg:p-8 text-lg md:text-[28px] text-navy dark:text-white font-medium bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] rounded-[12px] lg:rounded-3xl gap-x-4 md:gap-x-8
+            className={`group flex items-center justify-between w-full min-h-16 md:h-20 lg:h-[5.75rem] leading-[100%] p-3 lg:p-8 text-lg md:text-[28px] text-navy dark:text-white font-medium bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] rounded-[12px] lg:rounded-3xl gap-x-4 md:gap-x-8
                 ${getOptionClass(option)}
                 ${hasAnswered ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
-            <div className="flex items-center gap-x-3 lg:gap-x-5">
+            <div className="flex items-center  gap-x-3 lg:gap-x-5">
               <span
-                className={`w-10 h-10 md:w-14 md:h-14 flex justify-center items-center rounded-[6px] lg:rounded-[8px] md:rounded-[12px] ${
+                className={`min-w-10 min-h-10 md:min-w-14 md:min-h-14 flex justify-center items-center rounded-[6px] lg:rounded-[8px] md:rounded-[12px] transition-all duration-150 ease-in-out ${
                   hasAnswered
                     ? option === currentQuestion.answer
                       ? "bg-green text-white"
@@ -81,12 +81,20 @@ export function Options() {
               </span>
               {option}
             </div>
-            <figure className="">
+            <figure>
               {hasAnswered ? (
                 option === currentQuestion.answer ? (
-                  <img src="/images/icon-correct.svg" />
+                  <img
+                    src="/images/icon-correct.svg"
+                    className="max-w-10"
+                    alt="correct_icon"
+                  />
                 ) : option === answer && option !== currentQuestion.answer ? (
-                  <img src="/images/icon-error.svg" />
+                  <img
+                    src="/images/icon-error.svg"
+                    className="max-w-10"
+                    alt="wrong_icon"
+                  />
                 ) : (
                   ""
                 )

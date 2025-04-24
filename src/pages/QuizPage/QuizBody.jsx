@@ -19,7 +19,7 @@ export function QuizBody() {
           </h3>
         </div>
         <progress
-          className="w-full h-3 col-span-full [&::-webkit-progress-bar]:bg-white dark:[&::-webkit-progress-bar]:bg-slate [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:p-1 [&::-webkit-progress-value]:bg-[#a729f5] [&::-webkit-progress-value]:rounded-full mt-6 mb-10 lg:mt-40"
+          className="w-full h-3 col-span-full  mt-6 mb-10 lg:mt-40"
           max={questions.length}
           value={points}
         />

@@ -13,6 +13,8 @@ export function Buttons() {
     <div className="flex flex-col gap-3 md:gap-6">
       {allQuestions.map((question, index) => (
         <button
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
           onClick={() => handleToggle(index)}
           key={index}
           className="w-full lg:w-[564px] h-16 md:h-20 lg:h-24 text-lg md:text-[1.75rem] font-medium text-navy dark:text-white bg-white dark:bg-slate flex items-center uppercase gap-4 lg:gap-8 p-3 lg:p-5 rounded-[0.75rem] shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] lg:rounded-3xl cursor-pointer"

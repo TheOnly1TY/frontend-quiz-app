@@ -21,7 +21,7 @@ export function Result() {
           </h1>
         </div>
         <div className="lg:max-w-[564px] w-full">
-          <div className="h-[242px] md:h-[388px] bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] p-8 md:p-12 rounded-3xl ">
+          <div className="h-[327px] md:h-[640px] lg:h-[388px] bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] p-8 md:p-12 rounded-3xl ">
             <div className="flex justify-center items-center font-medium text-sm md:text-[28px] text-navy dark:text-white uppercase gap-4 md:gap-6 mb-4 md:mb-10">
               <figure
                 style={{ backgroundColor: bgColors[title] }}

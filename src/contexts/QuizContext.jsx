@@ -40,8 +40,13 @@ function QuizProvider({ children }) {
           hasAnswered: state.answer !== null,
           points:
             action.payload.answer === state.answer
-              ? state.points++
+              ? state.points + 1
               : state.points,
+        };
+      case "finishQuiz":
+        return {
+          ...state,
+          hasAnswered: state.answer !== null,
         };
 
       case "nextQuestion":
