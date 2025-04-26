@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../contexts/QuizContext";
 import { CtaButton } from "../../components/CtaButton";
+import { motion } from "motion/react";
 
 export function Result() {
   const navigate = useNavigate();
@@ -12,7 +13,13 @@ export function Result() {
     dispatch({ type: "restart" });
   }
   return (
-    <section className=" md:mx-auto pb-12 font-display">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 1 }}
+      className=" md:mx-auto pb-12 font-display"
+    >
       <div className="flex flex-col lg:flex-row justify-between font-display mt-8 lg:mt-12 lg:gap-2">
         <div className="max-w-[19.375rem] md:max-w-[29.375rem]">
           <h1 className=" pb-4 md:pb-12 text-[2.5rem] md:text-[4rem] text-navy dark:text-white font-light leading-[100%]">
@@ -44,6 +51,6 @@ export function Result() {
           <CtaButton callback={handlePlayAgain} message="Play Again" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

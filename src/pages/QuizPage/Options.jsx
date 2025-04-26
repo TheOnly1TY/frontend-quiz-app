@@ -37,7 +37,7 @@ export function Options() {
 
   const getOptionClass = (option) => {
     if (!hasAnswered) {
-      return option === answer ? "border-3 border-violet" : "";
+      return option === answer ? "border-3 border-violet " : "";
     }
 
     if (option === currentQuestion.answer) {
@@ -59,7 +59,7 @@ export function Options() {
             onClick={() => handleUserAnswer(option)}
             disabled={hasAnswered}
             key={option}
-            className={`group flex items-center justify-between w-full min-h-16 md:h-20 lg:h-[5.75rem] leading-[100%] p-3 lg:p-8 text-lg md:text-[28px] text-navy dark:text-white font-medium bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] rounded-[12px] lg:rounded-3xl gap-x-4 md:gap-x-8
+            className={` group flex items-center justify-between w-full min-h-16 md:h-20 lg:h-[5.75rem] leading-[100%] p-3 lg:p-8 text-lg md:text-[28px] text-navy dark:text-white font-medium bg-white dark:bg-slate shadow-[0px_16px_40px_0px_rgba(143,16,0,193,0.14)] dark:shadow-[0px_16px_40px_0px_rgba(49,62,81,0.14)] rounded-[12px] lg:rounded-3xl gap-x-4 md:gap-x-8 
                 ${getOptionClass(option)}
                 ${hasAnswered ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
@@ -74,7 +74,7 @@ export function Options() {
                       : "bg-cloud text-steel"
                     : option === answer
                     ? "bg-violet text-white"
-                    : "bg-cloud text-steel group-hover:text-violet group-hover:bg-[#F6E7FF]"
+                    : "bg-cloud  text-steel group-hover:text-violet group-hover:bg-[#F6E7FF]"
                 }`}
               >
                 {String.fromCharCode(65 + index)}

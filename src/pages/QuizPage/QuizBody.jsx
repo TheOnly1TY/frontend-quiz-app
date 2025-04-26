@@ -1,12 +1,19 @@
 import { useQuiz } from "../../contexts/QuizContext";
 import { Options } from "./Options";
+import { motion } from "motion/react";
 
 export function QuizBody() {
   const { selectedQuestion, currentQuestionindex, points } = useQuiz();
   const { questions } = selectedQuestion;
+
   return (
-    <div
-      className="grid lg:grid-cols-2 lg:py-16 md:mx-4 lg:mx-0 pb-12"
+    <motion.div
+      key={currentQuestionindex}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 1 }}
+      className={`grid lg:grid-cols-2 lg:py-16 md:mx-4 lg:mx-0 pb-12 transition-opacity duration-500`}
       role="quizContent"
     >
       <div className="lg:max-w-[465px] flex flex-col">
@@ -25,6 +32,6 @@ export function QuizBody() {
         />
       </div>
       <Options />
-    </div>
+    </motion.div>
   );
 }
