@@ -115,7 +115,7 @@ export function Options() {
       )}
 
       {isAnsweredSelected && (
-        <p className="flex items-center justify-center text-2xl text-red dark:text-white font-normal font-display gap-2">
+        <p className="flex items-center justify-center text-sm md:text-2xl text-red dark:text-white font-normal font-display gap-2">
           <img src="/images/icon-error.svg" />
           Please select an answer
         </p>

@@ -1,10 +1,34 @@
+import { useEffect } from "react";
 import { useQuiz } from "../../contexts/QuizContext";
 import { Options } from "./Options";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 export function QuizBody() {
-  const { selectedQuestion, currentQuestionindex, points } = useQuiz();
+  const { selectedQuestion, currentQuestionindex, points, dispatch } =
+    useQuiz();
   const { questions } = selectedQuestion;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const confirmLeave = window.confirm(
+        "Are you sure you want to end the quiz?"
+      );
+      if (confirmLeave) {
+        navigate("", { replace: true });
+        dispatch({ type: "restart" });
+      } else {
+        history.pushState(null, null, location.href);
+      }
+    };
+    history.pushState(null, null, location.href);
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [navigate, dispatch]);
 
   return (
     <motion.div
