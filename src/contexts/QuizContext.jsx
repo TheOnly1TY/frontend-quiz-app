@@ -2,8 +2,6 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 const QuizContext = createContext();
 
-const BASE_URL = "http://localhost:3000/quizzes";
-
 function QuizProvider({ children }) {
   const initialState = {
     allQuestions: [],
@@ -84,8 +82,10 @@ function QuizProvider({ children }) {
   useEffect(() => {
     async function name() {
       try {
-        const res = await fetch(BASE_URL);
+        const res = await fetch("/src/data.json");
+        if (!res.ok) throw new Error("Failed to fetch data");
         const data = await res.json();
+        console.log(data);
         dispatch({ type: "fetchQuestions", payload: data });
       } catch (error) {
         console.error(error.message);
