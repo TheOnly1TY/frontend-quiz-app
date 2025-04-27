@@ -14,7 +14,7 @@ export function Theme() {
   return (
     <div className="flex justify-end items-center gap-2 lg:gap-4 py-4">
       <img
-        src={theme ? "/images/icon-sun-dark.svg" : "/images/icon-sun-light.svg"}
+        src={theme ? "/images/icon-sun-light.svg" : "/images/icon-sun-dark.svg"}
         alt="sun_icon"
       />
       <label
@@ -36,7 +36,7 @@ export function Theme() {
       </label>
       <img
         src={
-          theme ? "/images/icon-moon-dark.svg" : "/images/icon-moon-light.svg"
+          theme ? "/images/icon-moon-light.svg" : "/images/icon-moon-dark.svg"
         }
         alt="moon_icon"
       />
