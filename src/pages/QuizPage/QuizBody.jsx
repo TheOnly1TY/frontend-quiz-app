@@ -11,6 +11,10 @@ export function QuizBody() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
     const handlePopState = () => {
       const confirmLeave = window.confirm(
         "Are you sure you want to end the quiz?"
@@ -23,9 +27,11 @@ export function QuizBody() {
       }
     };
     history.pushState(null, null, location.href);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     window.addEventListener("popstate", handlePopState);
 
     return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener("popstate", handlePopState);
     };
   }, [navigate, dispatch]);
