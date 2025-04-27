@@ -80,18 +80,17 @@ function QuizProvider({ children }) {
   };
 
   useEffect(() => {
-    async function name() {
+    async function fetchQuestions() {
       try {
-        const res = await fetch("/data.json");
+        const res = await fetch("/public/data.json");
         if (!res.ok) throw new Error("Failed to fetch data");
         const data = await res.json();
-        console.log(data);
         dispatch({ type: "fetchQuestions", payload: data });
       } catch (error) {
         console.error(error.message);
       }
     }
-    name();
+    fetchQuestions();
   }, []);
 
   return (
