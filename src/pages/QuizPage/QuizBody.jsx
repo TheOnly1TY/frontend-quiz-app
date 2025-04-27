@@ -14,8 +14,6 @@ export function QuizBody() {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = "";
-      navigate("", { replace: true });
-      dispatch({ type: "restart" });
     };
     const handlePopState = () => {
       const confirmLeave = window.confirm(
