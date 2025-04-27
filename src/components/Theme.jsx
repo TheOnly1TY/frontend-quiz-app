@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 export function Theme() {
-  const [theme, setTheme] = useState(false);
+  const getTheme = () => {
+    const theme = localStorage.getItem("Theme");
+    return theme ? true : false;
+  };
+  const [theme, setTheme] = useState(getTheme());
 
   useEffect(() => {
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark", theme);
+    localStorage.setItem("Theme", theme);
   }, [theme]);
 
   const handleThemeSwitch = () => {
-    setTheme((prev) => !prev);
+    setTheme((prevTheme) => (!prevTheme ? true : false));
   };
   return (
     <div className="flex justify-end items-center gap-2 lg:gap-4 py-4">
