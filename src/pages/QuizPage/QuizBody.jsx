@@ -11,10 +11,10 @@ export function QuizBody() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
+    // const handleBeforeUnload = (event) => {
+    //   event.preventDefault();
+    //   event.returnValue = "";
+    // };
     const handlePopState = () => {
       const confirmLeave = window.confirm(
         "Are you sure you want to end the quiz?"
@@ -27,11 +27,11 @@ export function QuizBody() {
       }
     };
     history.pushState(null, null, location.href);
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    // window.addEventListener("beforeunload", handleBeforeUnload);
     window.addEventListener("popstate", handlePopState);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      // window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener("popstate", handlePopState);
     };
   }, [navigate, dispatch]);
@@ -42,7 +42,7 @@ export function QuizBody() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.25 }}
       className={`grid lg:grid-cols-2 lg:py-16 md:mx-4 lg:mx-0 pb-12 transition-opacity duration-500`}
       role="quizContent"
     >
